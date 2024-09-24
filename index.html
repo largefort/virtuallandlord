@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord Tycoon Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Landlord Tycoon</h1>
+        
+        <!-- Rent collection -->
+        <div id="rent-info">
+            <p>Rent Collected: <span id="rent">$0</span></p>
+            <p>Tenant Expenses: <span id="expenses" class="red">$0</span></p>
+            <p>Total Wealth: <span id="wealth">$0</span></p>
+        </div>
+
+        <!-- Tenant Management -->
+        <div id="tenant-container">
+            <h2>Tenants</h2>
+            <button id="add-tenant-btn">Add Tenant</button>
+            <div id="tenants-list"></div>
+        </div>
+
+        <!-- House Building -->
+        <div id="house-container">
+            <h2>Manage Houses</h2>
+            <button id="build-house-btn">Build House</button>
+            <div id="houses-list"></div>
+        </div>
+
+        <!-- Curse Mechanic -->
+        <div id="curse-section">
+            <button id="curse-btn">Activate Curse (Landlord Pays Tenants)</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
