@@ -34,7 +34,19 @@ function evictTenant(tenantId) {
     updateTenantsUI();
 }
 
-// Updated tenant UI to include an "Evict" and "Clean" button
+// Function to clean a tenant's house
+function cleanTenantHouse(tenantId) {
+    tenants = tenants.map(tenant => {
+        if (tenant.id === tenantId && tenant.cleanliness < 100) {
+            tenant.cleanliness = 100; // Reset cleanliness to 100%
+            tenant.rentPerSecond = 5; // Reset rent back to normal
+        }
+        return tenant;
+    });
+    updateTenantsUI();
+}
+
+// Updated tenant UI to include "Evict" and "Clean" buttons with event listeners
 function updateTenantsUI() {
     tenantsList.innerHTML = '';
     tenants.forEach(tenant => {
@@ -43,11 +55,11 @@ function updateTenantsUI() {
         
         const evictButton = document.createElement('button');
         evictButton.textContent = 'Evict';
-        evictButton.onclick = () => evictTenant(tenant.id);
+        evictButton.onclick = () => evictTenant(tenant.id); // Event listener for evict button
         
         const cleanButton = document.createElement('button');
         cleanButton.textContent = 'Clean';
-        cleanButton.onclick = () => cleanTenantHouse(tenant.id);
+        cleanButton.onclick = () => cleanTenantHouse(tenant.id); // Event listener for clean button
         
         tenantElement.appendChild(evictButton);
         tenantElement.appendChild(cleanButton);
@@ -79,14 +91,14 @@ function upgradeHouse(houseId) {
     updateHousesUI();
 }
 
-// Increase tenant rent based on house upgrade level
+// Function to increase tenant rent based on house upgrade level
 function increaseTenantRent(upgradeLevel) {
     tenants.forEach(tenant => {
         tenant.rentPerSecond += (upgradeLevel - 1) * 2; // Rent increases with house level
     });
 }
 
-// Updated house UI to include an "Upgrade" button
+// Updated house UI to include "Upgrade" button with event listener
 function updateHousesUI() {
     housesList.innerHTML = '';
     houses.forEach(house => {
@@ -95,7 +107,7 @@ function updateHousesUI() {
         
         const upgradeButton = document.createElement('button');
         upgradeButton.textContent = 'Upgrade';
-        upgradeButton.onclick = () => upgradeHouse(house.id);
+        upgradeButton.onclick = () => upgradeHouse(house.id); // Event listener for upgrade button
         
         houseElement.appendChild(upgradeButton);
         housesList.appendChild(houseElement);
@@ -113,18 +125,6 @@ function collectRent(tenant) {
     }, 5000); // 5 seconds interval
 }
 
-// Function to clean tenant houses
-function cleanTenantHouse(tenantId) {
-    tenants = tenants.map(tenant => {
-        if (tenant.id === tenantId && tenant.cleanliness < 100) {
-            tenant.cleanliness = 100; // Reset cleanliness to 100%
-            tenant.rentPerSecond = 5; // Reset rent back to normal
-        }
-        return tenant;
-    });
-    updateTenantsUI();
-}
-
 // Function to degrade cleanliness over time
 function degradeCleanliness() {
     setInterval(() => {
@@ -140,7 +140,7 @@ function degradeCleanliness() {
     }, 5000); // Cleanliness decreases every 5 seconds
 }
 
-// Start degrading cleanliness
+// Start degrading cleanliness over time
 degradeCleanliness();
 
 // Curse mechanic: landlord pays tenants
@@ -155,7 +155,7 @@ function activateCurse() {
     }, 1000); // Curse happens every second
 }
 
-// Function to update wealth
+// Function to update total wealth
 function updateWealth() {
     totalWealth = rent - expenses;
     wealthElement.textContent = `$${totalWealth.toFixed(2)}`;
@@ -164,7 +164,7 @@ function updateWealth() {
 // Update wealth every second
 setInterval(updateWealth, 1000);
 
-// Event listeners
+// Event listeners for adding tenants, building houses, and activating curse
 document.getElementById('add-tenant-btn').addEventListener('click', addTenant);
 document.getElementById('build-house-btn').addEventListener('click', buildHouse);
 document.getElementById('curse-btn').addEventListener('click', activateCurse);
