@@ -1,0 +1,168 @@
+/* General body styles for the game */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Game container style */
+#game-container {
+    width: 100%;
+    max-width: 700px;
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Headings */
+h1, h2 {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+/* Rent information styles */
+#rent-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#rent-info p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.red {
+    color: #e74c3c;
+}
+
+.green {
+    color: #2ecc71;
+}
+
+/* Containers for tenants and houses */
+#tenant-container, #house-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#tenant-container h2, #house-container h2 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* Tenant and house list sections */
+#tenants-list, #houses-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Tenant and house item */
+#tenants-list div, #houses-list div {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons inside each item */
+#tenants-list button, #houses-list button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* Hover effect for buttons */
+#tenants-list button:hover, #houses-list button:hover {
+    background-color: #c0392b;
+}
+
+/* Add/Build buttons */
+button {
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Curse section */
+#curse-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#curse-btn {
+    background-color: #f39c12;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#curse-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    #game-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #rent-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
