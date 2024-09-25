@@ -1,158 +1,121 @@
-/* General body styles for the game */
+/* Global Styles */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
-    overflow: hidden;  /* Prevent full body scrolling */
+    overflow-x: hidden;
 }
 
-/* Game container style */
+/* Main game container styling */
 #game-container {
-    max-width: 750px;
-    width: 100%;
-    padding: 25px;
+    width: 600px;
     background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    overflow: hidden;  /* Prevent overflow outside the container */
-    height: 90vh;      /* Limit the container height to 90% of the viewport */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin-top: 20px;
 }
 
-/* Scrollable section for tenants and houses */
-#tenant-container, #house-container {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+h1, h2 {
+    text-align: center;
     margin-bottom: 20px;
-    overflow-y: auto;  /* Enable scrolling within the tenant and house sections */
-    max-height: 35vh;  /* Limit the height of tenant and house lists */
 }
 
-#tenants-list, #houses-list {
-    margin-top: 15px;
-    overflow-y: auto;  /* Enable scrolling if lists exceed the container height */
-    max-height: 25vh;  /* Limit the tenant and house list height to prevent overflow */
-}
-
-/* Rent and Wealth Info */
+/* Rent, Expenses, Wealth Info */
 #rent-info {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    flex-shrink: 0;  /* Prevent shrinking of this section */
-}
-
-#rent-info p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 0;
+    text-align: center;
 }
 
 .red {
-    color: #e74c3c;
+    color: red;
 }
 
 .green {
-    color: #2ecc71;
+    color: green;
 }
 
-/* Tenant and House Buttons */
-#tenants-list div, #houses-list div {
-    background-color: #ffffff;
+/* Prevent scrollbars in tenant and house containers */
+#tenant-container, #house-container {
+    margin: 20px 0;
+}
+
+#tenants-list, #houses-list {
+    overflow-y: hidden; /* Prevent scrolling */
     padding: 10px;
-    border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Tenant and House Button styles */
-#tenants-list button, #houses-list button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-#tenants-list button:hover, #houses-list button:hover {
-    background-color: #c0392b;
-}
-
-/* General Button styling */
+/* Buttons: General Styling */
 button {
-    display: block;
-    width: fit-content;
-    margin: 15px auto;
-    padding: 12px 25px;
-    background-color: #3498db;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
 }
 
-/* Curse button styling */
-#curse-btn {
-    background-color: #f39c12;
-    color: white;
-    padding: 12px 25px;
-    border: none;
+/* Specific Button Styles for Tenant List and House List */
+#tenants-list div, #houses-list div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
-#curse-btn:hover {
-    background-color: #e67e22;
+#tenants-list div button, #houses-list div button {
+    margin: 0 5px;
 }
 
-/* Responsive Design */
+/* Flexbox for Responsive Layout */
+.container {
+    max-width: 100%;
+    padding: 1rem;
+}
+
+/* Ensure content does not exceed viewport */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Responsive Layout Adjustments for Smaller Screens */
 @media (max-width: 768px) {
     #game-container {
-        width: 90%;
-        padding: 20px;
+        width: 95%;
+        padding: 15px;
     }
 
-    #rent-info {
-        flex-direction: column;
-        gap: 15px;
+    button {
+        width: 100%; /* Full width buttons on smaller screens */
+        padding: 15px;
     }
 
     #tenants-list div, #houses-list div {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
     }
 
-    button {
+    #tenants-list div button, #houses-list div button {
         width: 100%;
-        margin: 10px 0;
+        margin-top: 10px;
     }
 }
