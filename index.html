@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landlord Tycoon Game</title>
+    <title>Virtual Landlord</title>
+    <!-- Semantic UI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="game-container">
-        <h1>Landlord Tycoon</h1>
-        
-        <!-- Rent collection -->
-        <div id="rent-info">
-            <p>Rent Collected: <span id="rent">$0</span></p>
-            <p>Tenant Expenses: <span id="expenses" class="red">$0</span></p>
-            <p>Total Wealth: <span id="wealth">$0</span></p>
-        </div>
+    <div id="game-container" class="ui container segment raised">
+        <!-- Game Header -->
+        <header class="ui center aligned header">
+            <h1>Virtual Landlord</h1>
+            <h2>Manage your properties, tenants, and wealth!</h2>
+        </header>
 
-        <!-- Tenant Management -->
-        <div id="tenant-container">
-            <h2>Tenants</h2>
-            <button id="add-tenant-btn">Add Tenant</button>
-            <div id="tenants-list"></div>
-        </div>
+        <!-- Rent and Expenses Information -->
+        <section id="rent-info" class="ui segment">
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <p>Rent: <span id="rent" class="green">$0.00</span></p>
+                </div>
+                <div class="eight wide column">
+                    <p>Expenses: <span id="expenses" class="red">$0.00</span></p>
+                </div>
+                <div class="eight wide column">
+                    <p>Total Wealth: <span id="wealth" class="green">$0.00</span></p>
+                </div>
+            </div>
+        </section>
 
-        <!-- House Building -->
-        <div id="house-container">
-            <h2>Manage Houses</h2>
-            <button id="build-house-btn">Build House</button>
-            <div id="houses-list"></div>
-        </div>
+        <!-- Tenants Section -->
+        <section id="tenant-container" class="ui segment">
+            <h2 class="ui header">Manage Tenants</h2>
+            <div id="tenants-list" class="ui list"></div>
+            <button id="add-tenant-btn" class="ui primary button">Add Tenant</button>
+        </section>
+
+        <!-- Houses Section -->
+        <section id="house-container" class="ui segment">
+            <h2 class="ui header">Build & Upgrade Houses</h2>
+            <div id="houses-list" class="ui list"></div>
+            <button id="build-house-btn" class="ui primary button">Build House</button>
+        </section>
 
         <!-- Curse Mechanic -->
-        <div id="curse-section">
-            <button id="curse-btn">Activate Curse (Landlord Pays Tenants)</button>
-        </div>
+        <section id="curse-section" class="ui segment center aligned">
+            <button id="curse-btn" class="ui orange button">Activate Curse</button>
+        </section>
     </div>
 
+    <!-- Semantic UI JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="game.js"></script>
 </body>
 </html>
