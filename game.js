@@ -3,6 +3,7 @@ let expenses = 0;
 let totalWealth = 0;
 let tenants = [];
 let houses = [];
+let curseActive = false; // Variable to track if the curse is active
 
 // DOM elements
 const rentElement = document.getElementById('rent');
@@ -18,7 +19,8 @@ function saveGame() {
         expenses,
         totalWealth,
         tenants,
-        houses
+        houses,
+        curseActive // Save curse status
     };
     localStorage.setItem('virtualLandlordSave', JSON.stringify(gameState));
 }
@@ -33,7 +35,8 @@ function loadGame() {
         totalWealth = gameState.totalWealth;
         tenants = gameState.tenants;
         houses = gameState.houses;
-        
+        curseActive = gameState.curseActive || false; // Load curse status
+
         updateTenantsUI();
         updateHousesUI();
         rentElement.textContent = `$${rent.toFixed(2)}`;
@@ -187,15 +190,30 @@ degradeCleanliness();
 
 // Curse mechanic: landlord pays tenants
 function activateCurse() {
-    setInterval(() => {
-        if (tenants.length > 0) {
-            const curseAmount = tenants.length * 1;
-            expenses += curseAmount;
-            expensesElement.textContent = `$${expenses.toFixed(2)}`;
-            updateWealth();
-            saveGame(); // Save the game after curse payment
-        }
-    }, 1000);
+    if (!curseActive) {
+        curseActive = true; // Activate the curse
+        setInterval(() => {
+            if (tenants.length > 0) {
+                const curseAmount = tenants.length * 1;
+                expenses += curseAmount;
+                expensesElement.textContent = `$${expenses.toFixed(2)}`;
+                updateWealth();
+                saveGame(); // Save the game after curse payment
+            }
+        }, 1000);
+    }
+}
+
+// Function to cleanse the curse
+function cleanseCurse() {
+    if (curseActive) {
+        curseActive = false; // Deactivate the curse
+        expenses = Math.max(expenses - (tenants.length * 1), 0); // Remove the last curse impact
+        expensesElement.textContent = `$${expenses.toFixed(2)}`;
+        updateWealth();
+        saveGame(); // Save the game after cleansing the curse
+        console.log("Curse has been cleansed!");
+    }
 }
 
 // Function to update total wealth
@@ -209,3 +227,4 @@ function updateWealth() {
 document.getElementById('add-tenant-btn').addEventListener('click', addTenant);
 document.getElementById('build-house-btn').addEventListener('click', buildHouse);
 document.getElementById('curse-btn').addEventListener('click', activateCurse);
+document.getElementById('cleanse-btn').addEventListener('click', cleanseCurse); // Add event listener for cleanse button
